@@ -111,7 +111,7 @@ class DatastorePlugin(p.SingletonPlugin):
                 sql = u"CREATE TABLE test_readonly(id INTEGER);"
                 connection.execute(sql)
             except ProgrammingError, e:
-                if 'permission denied' in str(e) or 'read-only transaction' in str(e):
+                if 'permesso negato' in str(e) or 'read-only transaction' in str(e):
                     pass
                 else:
                     raise
@@ -160,7 +160,7 @@ class DatastorePlugin(p.SingletonPlugin):
                 try:
                     read_connection.execute(sql)
                 except ProgrammingError, e:
-                    if 'permission denied' not in str(e):
+                    if 'permesso negato' not in str(e):
                         raise
                 else:
                     log.info("Connection url {0}".format(self.read_url))
