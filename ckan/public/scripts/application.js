@@ -1776,6 +1776,53 @@ CKAN.DataPreview = function ($, my) {
       el.css('border', 'solid 4px black');
       my.$dialog.append(el);
     }
+    // WMS reference
+    else if (resourceData.resource_locator_protocol == 'TOLOMEO:preset') {
+      // Davide
+      my.$dialog.empty();
+      var el = $('<div style="width:100%;height:550px"></div>');
+      el.attr('id', 'tolomeo-preview');
+      my.$dialog.append(el);
+	Ext.onReady(function(){
+		var tolomeo = new TolomeoExt.ToloPanelInter({
+		withDataPanel: false,
+		withToolsPanel: false,
+		toolbarOpt: {
+			withLegenda:false,
+			withQuery:false,
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false,
+			defaults: {scale:'medium'},
+			iconBasePath: '/tolomeo/img/icone/24-default/'
+		}
+	});
+	
+      		var tolopan = new Ext.Panel({
+			renderTo: 'tolomeo-preview',
+			layout: 'fit',
+			height: 400,
+			items:[tolomeo]
+		}); 
+	});
+      /*
+      var el = $('<a></a>');
+      el.attr('href', resourceData.url);
+      el.attr('class', 'btn btn-primary');
+      el.text('Anteprima in Tolomeo');
+      my.$dialog.append(el);
+      */
+    }
     else {
       // Cannot reliably preview this item - with no mimetype/format information,
       // can't guarantee it's not a remote binary file such as an executable.

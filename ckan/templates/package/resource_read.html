@@ -15,7 +15,20 @@
   <xi:include href="../snippets/data-viewer-embed-dialog.html" />
 
   <py:def function="optional_head">
+<py:if test="c.resource.get('resource_locator_protocol')=='TOLOMEO:preset'">
+ <!-- Davide -->
+  <!-- Tolomeo -->
+<script type="text/JavaScript" charset="utf-8" src="/tolomeo/js/tolomeoExt/build/toloExt-all-debug.js"></script>
 
+<script type="text/JavaScript" charset="utf-8" src="/tolomeo/js/tolomeoExt/layout/ToloPanelInter.js"></script><!-- TODO dynamically include this -->
+<script type="text/JavaScript" charset="utf-8" src="${c.resource.get('url')}ToloExtParamsJSServlet?paramPreset=${c.resource.get('name')}"></script>
+ 	 <!-- Davide -->
+  <link rel="stylesheet" type="text/css" charset="utf-8" href="/tolomeo/js/ext/extJS/resources/css/ext-all.css" />
+  <link rel="stylesheet" type="text/css" charset="utf-8" href="/tolomeo/css/toloExt-intra.css" />
+<style>
+.olMap img { max-width:none; }
+</style>
+</py:if>
     <xi:include href="../snippets/recline-extra-header.html" />
 
     <style type="text/css">
@@ -124,6 +137,7 @@
         </dd>
       </dl>
     </div>
+
 
     <div class="notes" property="rdfs:label" py:if="c.resource.get('description')">
       <div id="notes-extract">
