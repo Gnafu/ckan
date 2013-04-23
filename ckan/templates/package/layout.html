@@ -30,7 +30,7 @@
 			  <a href="${h.url_for(controller='package', action='resource_read', id=c.pkg_dict['name'], resource_id=res['id'])}">
           <py:choose test="res.get('resource_locator_protocol')">
           <py:when test="'TOLOMEO:preset'">${h.icon('map')}</py:when>
-          <py:when test="'OGC:WMS-1.3.0-http-get-map'">${h.icon('map')}:</py:when>
+          <py:when test="'OGC:WMS-1.3.0-http-get-map'">${h.icon('map')}</py:when>
           <py:otherwise>${h.resource_icon(res)}</py:otherwise></py:choose>
           ${h.resource_display_name(res)}</a>
               </li>
