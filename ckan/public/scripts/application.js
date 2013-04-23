@@ -1783,38 +1783,38 @@ CKAN.DataPreview = function ($, my) {
       var el = $('<div style="width:100%;height:550px"></div>');
       el.attr('id', 'tolomeo-preview');
       my.$dialog.append(el);
-	Ext.onReady(function(){
-		var tolomeo = new TolomeoExt.ToloPanelInter({
-		withDataPanel: false,
-		withToolsPanel: false,
-		toolbarOpt: {
-			withLegenda:false,
-			withQuery:false,
-			withSeleziona: false,
-			withAnnullaSeleziona: false,
-			withLayerList:  false,
-			withIdentify:  false,
-			withNuovo:  false,
-			withUpdateAlfa:  false,
-			withAdd:  false,
-			withSubtract:  false,
-			withAddSub:  false,
-			withVertexEdit:  false,
-			withDragDrop:  false,
-			withDelete:  false,
-			withAutoIdentify: false,
-			defaults: {scale:'medium'},
-			iconBasePath: '/tolomeo/img/icone/24-default/'
-		}
-	});
-	
-      		var tolopan = new Ext.Panel({
-			renderTo: 'tolomeo-preview',
-			layout: 'fit',
-			height: 400,
-			items:[tolomeo]
-		}); 
-	});
+        Ext.onReady(function(){
+            var tolomeo = new TolomeoExt.ToloPanelInter({
+            withDataPanel: false,
+            withToolsPanel: false,
+            toolbarOpt: {                 
+               withPanArrows: true,
+               withQuery: false,
+               withAnnullaSeleziona: false,
+               withSeleziona:false,
+               withIdentify:  false,
+               withLegenda: false,
+               withNuovo: false,
+               withUpdateAlfa: false,
+               withAdd: false,
+               withSubtract: false,
+               withAddSub: false,
+               withVertexEdit: false,
+               withDragDrop: false,
+               withDelete: false,
+               withShowCoordinate: false,
+               defaults: {scale:'medium'},                  
+               iconBasePath: '/tolomeo/img/icone/24-default/'
+            }
+        });
+
+        var tolopan = new Ext.Panel({
+            renderTo: 'tolomeo-preview',
+            layout: 'fit',
+            height: 400,
+            items:[tolomeo]
+        }); 
+    });
       /*
       var el = $('<a></a>');
       el.attr('href', resourceData.url);
