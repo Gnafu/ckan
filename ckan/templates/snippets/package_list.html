@@ -50,6 +50,9 @@
   			<span py:when="extra.key == 'nodo_origine_cerco'">Nodo CERCO: ${extra.value}</span>
 		</span>
 	</div>
+	<py:if test="package.resources">
+  			<span >Risorse collegate: ${len(package.resources)}</span>
+	</py:if>
 
 		<div class="extract">
 			${h.markdown_extract(package.notes)}
