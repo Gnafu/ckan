@@ -18,10 +18,10 @@
 <py:if test="c.resource.get('resource_locator_protocol')=='TOLOMEO:preset'">
  <!-- Davide -->
   <!-- Tolomeo -->
-<script type="text/JavaScript" charset="utf-8" src="/tolomeo/js/tolomeoExt/build/toloExt-all-debug.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="http://pratomaps.comune.prato.it/js/tolomeoExt/build/toloExt-all-debug.js"></script>
 
-<script type="text/JavaScript" charset="utf-8" src="/tolomeo/js/tolomeoExt/layout/ToloPanelInter.js"></script><!-- TODO dynamically include this -->
-<script type="text/JavaScript" charset="utf-8" src="${c.resource.get('url')}ToloExtParamsJSServlet?paramPreset=${c.resource.get('name')}"></script>
+<script type="text/JavaScript" charset="utf-8" src="http://pratomaps.comune.prato.it/js/tolomeoExt/layout/ToloPanelInter.js"></script><!-- TODO dynamically include this -->
+<script type="text/JavaScript" charset="utf-8" src="${c.resource.get('url')}"></script>
  	 <!-- Davide -->
   <link rel="stylesheet" type="text/css" charset="utf-8" href="/tolomeo/js/ext/extJS/resources/css/ext-all.css" />
   <link rel="stylesheet" type="text/css" charset="utf-8" href="/tolomeo/css/toloExt-intra.css" />
@@ -83,6 +83,9 @@
         <py:choose test="c.resource.get('resource_type')">
           <py:when test="'listing'">View</py:when>
           <py:when test="'service'">View</py:when>
+          <py:when test="'WWW:LINK-1.0-http--link'">View</py:when>
+          <py:when test="'link'">View</py:when>
+
           <py:when test="'api'">API Endpoint</py:when>
           <py:otherwise>
             <div class="download">
@@ -99,6 +102,8 @@
         <py:if test="not c.resource.get('datastore_active')">
           <a class="btn disabled" rel="tooltip" title="Data API is unavailable for this resource as DataStore is disabled">Data API</a>
         </py:if>
+       
+       
       </py:if>
     </div>
 
@@ -177,10 +182,11 @@
         </thead>
         <tbody>
           <py:for each="i, key in enumerate(sorted(c.resource.keys()))">
-            <tr py:if="not key=='description'">
+            <tr py:if="key in ['name','created','url']">
               <td class="dataset-label" property="rdfs:label">${_(key)}</td>
               <td class="dataset-details" property="rdf:value">${c.resource[key]}</td>
             </tr>
+           
           </py:for>
         </tbody>
       </table>
