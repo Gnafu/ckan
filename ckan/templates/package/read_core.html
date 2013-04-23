@@ -34,6 +34,7 @@
           <py:choose test="res.get('resource_locator_protocol')">
           <py:when test="'TOLOMEO:preset'">${h.icon('map')}Mappa:</py:when>
           <py:when test="'OGC:WMS-1.3.0-http-get-map'">${h.icon('map')}Livello:</py:when>
+          <py:when test="'WWW:LINK-1.0-http--link'">${h.icon('page_white_link')}</py:when>
           <py:when test="'api'">API Endpoint</py:when>
           <py:otherwise>
             ${h.resource_icon(res)} 
