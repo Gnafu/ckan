@@ -471,9 +471,14 @@ def format_icon(_format):
     if ('csv' in _format): return 'page_white_gear'
     if ('xls' in _format): return 'page_white_excel'
     if ('zip' in _format): return 'page_white_compressed'
+    if ('tgz' in _format): return 'page_white_compressed'
     if ('api' in _format): return 'page_white_database'
     if ('plain text' in _format): return 'page_white_text'
     if ('xml' in _format): return 'page_white_code'
+    #if ('tolomeo' in _format): return 'map'
+    #if ('map' in _format): return 'map'
+    #if ('layer' in _format): return 'map'
+
     return 'page_white'
 
 def linked_gravatar(email_hash, size=100, default=None):
