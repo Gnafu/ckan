@@ -1,5 +1,5 @@
-<html xmlns:py="http://genshi.edgewall.org/"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
+	<html xmlns:py="http://genshi.edgewall.org/"
+	  xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:i18n="http://genshi.edgewall.org/i18n"
   py:strip=""
   >
@@ -31,7 +31,14 @@
           <py:for each="res in c.pkg_dict.get('resources', [])">
           <li>
             <a href="${h.url_for(controller='package', action='resource_read', id=c.pkg_dict['name'], resource_id=res['id'])}">
-              ${h.resource_icon(res)}
+          <py:choose test="res.get('resource_locator_protocol')">
+          <py:when test="'TOLOMEO:preset'">${h.icon('map')}Mappa:</py:when>
+          <py:when test="'OGC:WMS-1.3.0-http-get-map'">${h.icon('map')}Livello:</py:when>
+          <py:when test="'api'">API Endpoint</py:when>
+          <py:otherwise>
+            ${h.resource_icon(res)} 
+          </py:otherwise>
+        </py:choose>
               ${h.resource_display_name(res)}
               <span py:if="res.get('format')" class="format-box" property="dc:format">${res.get('format')}</span>
             </a>
@@ -64,31 +71,6 @@
           <td class="dataset-details" property="foaf:homepage">${c.pkg_url_link}</td>
         </tr>
 
-        <tr py:if="c.pkg_author_link">
-          <td class="dataset-label">Author</td>
-          <td class="dataset-details" property="dc:creator">${c.pkg_author_link}</td>
-        </tr>
-
-        <tr py:if="c.pkg_maintainer_link">
-          <td class="dataset-label">Maintainer</td>
-          <td class="dataset-details" property="dc:contributor">${c.pkg_maintainer_link}</td>
-        </tr>
-
-        <tr py:if="c.pkg.version">
-          <td class="dataset-label">Version</td>
-          <td class="dataset-details">${c.pkg.version}</td>
-        </tr>
-
-        <tr py:if="c.eu_country">
-          <td class="dataset-label">Country</td>
-          <td class="dataset-details">${h.code_to_country(c.eu_country)}</td>
-        </tr>
-
-        <tr py:if="h.check_access('package_update',{'id':c.pkg.id})">
-          <td class="dataset-label">State</td>
-          <td class="dataset-details">${c.pkg.state}</td>
-        </tr>
-
         <tr py:if="c.harvest_catalogue_name">
           <td class="dataset-label">Harvest Source</td>
           <td class="dataset-details" i18n:msg="harvest_catalogue_name">
@@ -96,11 +78,20 @@
             <a href="${c.harvest_catalogue_url}">${c.harvest_catalogue_name}</a>
           </td>
         </tr>
-
+        
         <tr py:for="i, (key, value) in enumerate(c.pkg_extras)"
           rel="dc:relation" resource="_:extra${i}">
+          <py:if test="key in ['guid' ,'spatial-reference-system', 'metadata-date' ,'resource-type']">
           <td class="dataset-label" property="rdfs:label">${_(key)}</td>
           <td class="dataset-details" property="rdf:value">${value}</td>
+          </py:if>
+
+          <py:if test="key == 'licence'"> <!-- licence is an array -->
+          <td class="dataset-label" property="rdfs:label">${_(key)}</td>
+		<!-- TODO: trasform lic in an iterable list -->
+          <td class="dataset-details" property="rdf:value"><py:for each="lic in list(value)">${lic} </py:for></td>
+          </py:if>        
+  
         </tr>
       </tbody>
     </table>
