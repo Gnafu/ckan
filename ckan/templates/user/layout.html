@@ -36,7 +36,6 @@
         </py:if>
         <py:if test="not c.id">
           <li class="${'active' if c.action=='login' else ''}"><a href="${h.url_for(controller='user', action='login')}">Login</a></li>
-          <li class="${'active' if c.action=='register' else ''}"><a href="${h.url_for(controller='user', action='register')}">Register Account</a></li>
         </py:if>
       </py:otherwise>
     </ul>

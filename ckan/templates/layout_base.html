@@ -59,7 +59,7 @@
           </span>
           <span class="ckan-logged-out">
             <a href="${h.url_for(controller='user',action='login')}">Login</a>
-            <a href="${h.url_for(controller='user',action='register')}">Register</a>
+           <!-- <a href="${h.url_for(controller='user',action='register')}">Register</a> -->
           </span>
         </div>
         <a href="${h.url('home')}">
@@ -74,12 +74,12 @@
               <input name="q" value="${c.q if hasattr(c, 'q') else ''}" class="search" placeholder="${_('Find datasets')}" />
             </form>
           </span>
-          <div id="mainmenu">
-            <span py:if="h.check_access('package_create')">${h.nav_link(_('Add a dataset'), controller='package', action='new')}</span>
-            ${h.nav_link(_('Search'), controller='package', action='search', highlight_actions = 'new index')}
-            ${h.nav_named_link(_('Groups'), name='%s_index' % h.default_group_type() )}
-            ${h.nav_link(_('About'), controller='home', action='about')}
-          </div>
+          <ul class="nav nav-pills" id="mainmenu">
+            <li py:if="h.check_access('package_create')">${h.nav_link(_('Add a dataset'), controller='package', action='new')}</li>
+            <li>${h.nav_link(_('Search'), controller='package', action='search', highlight_actions = 'new index')}</li>
+            <li>${h.nav_named_link(_('Groups'), name='%s_index' % h.default_group_type() )}</li>
+            <li>${h.nav_link(_('About'), controller='home', action='about')}</li>
+          </ul>
         </div>
       </header>
     </div>
@@ -135,10 +135,10 @@
   <div class="footer outer">
     <footer class="container">
       <div class="row">
-        <div class="span3">
+       <!--   <div class="span3">
           <h3 class="widget-title">About ${g.site_title}</h3>
           <div class="textwidget">
-            <ul>
+          <ul>
                 <li>${h.link_to(_('About'), h.url_for(controller='home', action='about'))}</li>
               <li>
                 <a href="http://twitter.com/ckanproject">Twitter @ckanproject</a>
@@ -151,69 +151,25 @@
               <li>
                 <a href="http://okfn.org/privacy-policy/">Privacy Policy</a>
               </li>
-            </ul>
+            </ul> 
           </div>
-        </div>
-        <div class="span3">
-          <h3 class="widget-title">Sections</h3>
-          <div class="textwidget">
-            <ul>
-              <li>
-                <a href="${h.url(controller='user', action='index')}">
-                  Users
-                </a>
-              </li>
-              <li>
-                <a href="${h.url(controller='tag', action='index')}">
-                  Tags
-                </a>
-              </li>
-              <li py:if="'stats' in config.get('ckan.plugins','').split(' ')">
-                <a href="${h.url('stats')}">
-                  Statistics
-                </a>
-              </li>
-              <li>
-                <a href="${h.url(controller='revision', action='index')}">
-                  Revisions
-                </a>
-              </li>
-              <li>
-                <a href="${h.url_for('ckanadmin_index')}">
-                  Site Admin
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="span3">
-          <h3 class="widget-title">Languages</h3>
-          <div class="textwidget">
-            <ul>
-<?python
-  current_url = request.environ['CKAN_CURRENT_URL']
-?>
-              <li py:for="locale in h.get_available_locales()">
-              <a href="${h.url(current_url, locale=str(locale))}">
-                  ${locale.display_name or locale.english_name}
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="span3">
-          <h3 class="widget-title">Meta</h3>
-          <p id="credits">
+        </div> -->
+       
+        <div class="span6">
+
+          <p id="credits" style="text-align:left">
             &copy; 2012
             <img src="http://assets.okfn.org/images/logo/okf_logo_white_and_green_tiny.png" id="footer-okf-logo" />
             <a href="http://okfn.org/">Open Knowledge Foundation</a>
             Licensed under the <a href="http://opendatacommons.org/licenses/odbl/1.0/">Open Database License</a>
             <a href="http://opendefinition.org/"><img alt="This Content and Data is Open" src="http://assets.okfn.org/images/ok_buttons/od_80x15_blue.png" style="border: none;"/></a>
-
-            <br/><br/>
-            Powered by <a href="http://ckan.org">CKAN</a> v${c.__version__}.<br/>
           </p>
+          </div>
+           <div class="span6" style="text-align:right">
+          Powered by <a href="http://ckan.org">CKAN</a> v${c.__version__}.<br/>
+            and <a href="http://www.geo-solutions.it">GeoSolutions</a>
         </div>
+        
       </div>
     </footer>
   </div> <!-- eo #container -->

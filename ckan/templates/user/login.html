@@ -54,7 +54,7 @@
     </form>
     <br/> 
     <!-- Simple OpenID Selector -->
-    <form py:if="g.openid_enabled" action="${h.url_for('/login_openid')}" method="post"
+    <!-- <form py:if="g.openid_enabled" action="${h.url_for('/login_openid')}" method="post"
       class="simple-form" id="openid_form">
       <input type="hidden" name="action" value="verify" />
       <fieldset>
@@ -81,7 +81,7 @@
       </div>
       </fieldset>
       <input id="openid_submit" type="submit" class="btn primary" value="${_('Sign in with OpenID')}"/>
-    </form>
+    </form> -->
   </div>
   <xi:include href="layout.html" />
 </html>
