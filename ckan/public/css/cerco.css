@@ -13,6 +13,12 @@ body.index.home .front-page .action-box-inner {
     overflow: hidden;
     border-radius: 20px;
 }
+body.index.home .front-page .action-box-inner.find{
+
+    height: 230px;
+
+}
+
 header {
     padding:0;
     position:relative;
@@ -27,7 +33,6 @@ header {
 
 }
 #mainmenu a{
-
     margin-bottom:0px;
     margin-left:0px;
     margin-right:0px;
@@ -53,4 +58,10 @@ padding-top: 10px;
 -moz-border-radius: 15px;
 -webkit-border-radius: 15px;
 border-radius: 15px;
+}
+.res-counter{
+margin-left:5px;
+font-weight: normal;
+font-size: 13px;
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
