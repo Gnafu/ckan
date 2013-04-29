@@ -4156,3 +4156,37 @@ msgstr "Classifica - Statistiche"
 #: ckanext/stats/templates/ckanext/stats/leaderboard.html:17
 msgid "Dataset Leaderboard"
 msgstr "Classifica dataset"
+
+#: custom localization strings for cerco project
+msgid "licence"
+msgstr "Licenza"
+
+#: custom localization strings for cerco project
+msgid "metadata-date"
+msgstr "Data metadato"
+
+#: custom localization strings for cerco project
+msgid "resource-type"
+msgstr "Tipo risorsa"
+
+#: custom localization strings for cerco project
+msgid "spatial-reference-system"
+msgstr "Sistema di riferimento"
+
+#: custom localization strings for cerco project
+msgid "spatial-reference-system"
+msgstr "Sistema di riferimento"
+
+#: custom localization strings for cerco project
+msgid "created"
+msgstr "Creato"
+
+#: custom localization strings for cerco project
+msgid "name"
+msgstr "Nome"
+
+#: custom localization strings for cerco project
+msgid "Recent Updates"
+msgstr "Ultimi Aggiornamenti"
+
+
