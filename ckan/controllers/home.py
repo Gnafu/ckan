@@ -98,6 +98,10 @@ class HomeController(BaseController):
             ckan.logic.action.get.recently_changed_packages_activity_list_html(
                 context, {})
 
+        # etj
+        c.recently_changed_packages = ckan.logic.action.get.current_package_list_with_resources(
+                context, {'limit':5})
+
         return render('home/index.html', cache_force=True)
 
     def license(self):
