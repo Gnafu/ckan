@@ -49,7 +49,7 @@
 
 	<div py:for="extra in package.extras">
 		<span py:choose="">
-  			<span py:when="extra.key == 'nodo_origine_cerco'">Nodo CERCO: ${extra.value}</span>
+  			<span class="nodoorigine" py:when="extra.key == 'nodo_origine_cerco'">Nodo CERCO: <strong>${extra.value}</strong></span>
 		</span>
 	</div>
 	<py:if test="package.resources">
