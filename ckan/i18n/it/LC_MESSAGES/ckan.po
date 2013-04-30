@@ -4189,4 +4189,9 @@ msgstr "Nome"
 msgid "Recent Updates"
 msgstr "Ultimi Aggiornamenti"
 
+#: custom localization strings for cerco project
+msgid "guid"
+msgstr "UUID d'origine"
+
+
 
