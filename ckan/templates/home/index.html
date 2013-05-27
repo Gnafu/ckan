@@ -13,11 +13,10 @@
       <!-- <h1 class="page_heading">Welcome to ${g.site_title}!</h1> -->
     </div>
     <div class="row">
-    <div class="span4">
+    <div class="span8">
         <div class="action-box">
           <div class="action-box-inner find clearfix">
             <h1>Find data</h1>
-
             <form action="${h.url_for(controller='package', action='search')}" method="GET"> 
               <input name="q" value="" class="search-field" placeholder="${_('Find datasets')}" /> 
             </form> 
@@ -28,12 +27,49 @@
       
       
       </div>
-      <div class="span8">
-        <a href="http://opengovernmentdata.org/" title="opendata" ><img src="/img/opendata.jpg" /></a>
+
+      <div class="span4 tolomeo_home">
+        <a href="/tolomeo" title="opendata" class="tolomeo_home"> 
+        <div>
+            <h2>Vai alla Mappa</h2><img  src="/img/tolmond.jpg" />
         </div>
+        </a>
+      </div>
     </div>
 
+    
+
+    
+    <div py:if="c.groups" class="row whoelse">
+     
+    </div>
     <div class="row">
+        <div class="span8 action-box home_groups">
+        <div class="action-box-inner"><a href="${h.url_for('/group')}" class=" pull-right">Vedi tutti i gruppi</a><h2>Groups</h2> 
+      <py:for each="i, group_dict in enumerate(c.groups[:6])">
+        <div class="span3 action-box-inner"> 
+          <div class="group">
+            <h3><a href="${h.url_for(controller='group', action='read', id=group_dict['name'])}">${group_dict['title']}</a></h3>
+            <p>
+              ${h.markdown_extract(group_dict['description'])}
+            </p>
+            <strong>${group_dict['title']} has ${group_dict['packages']} datasets.</strong>
+          </div>
+        </div>
+      </py:for>
+      </div>
+      </div>
+      <div class="span4 home_links">
+        <a href="${h.url_for('/about')}" title="opendata" ><img src="/img/chi_siamo.jpg" /></a> 
+        <a href="http://opengovernmentdata.org/" title="opendata" ><img src="/img/progetto_cerco.jpg" /></a>
+        <a href="http://opengovernmentdata.org/" title="opendata" ><img src="/img/opendata.jpg" /></a>
+
+
+      </div>
+    </div>
+    <div class="row"></div>
+
+    <div class="row whoelse">
         <div class="span12">
            <div class="action-box">
                <div class="action-box-inner">
@@ -61,27 +97,8 @@
         </div>
 -->
     </div>
-
-    
-    <div py:if="c.groups" class="row whoelse">
-      <div class="span12">
-        <h2>Groups</h2>
-      </div>
-    </div>
-    <div class="row">
-      <py:for each="i, group_dict in enumerate(c.groups[:6])">
-        <div class="span4">
-          <div class="group  action-box action-box-inner">
-            <h3><a href="${h.url_for(controller='group', action='read', id=group_dict['name'])}">${group_dict['title']}</a></h3>
-            <p>
-              ${h.markdown_extract(group_dict['description'])}
-            </p>
-            <strong>${group_dict['title']} has ${group_dict['packages']} datasets.</strong>
-          </div>
-        </div>
-      </py:for>
-    </div>
   </div>
+  
   <xi:include href="layout.html" />
 </html>
 

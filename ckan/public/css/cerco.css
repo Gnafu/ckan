@@ -5,7 +5,7 @@
 
 body.index.home .front-page .action-box-inner {
     margin-top: 0px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
     border: 1px solid #CCC;
@@ -14,9 +14,7 @@ body.index.home .front-page .action-box-inner {
     border-radius: 20px;
 }
 body.index.home .front-page .action-box-inner.find{
-
     height: 230px;
-
 }
 
 header {
@@ -68,4 +66,35 @@ font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 .nodoorigine{
     font-size: 90%;
     font-style: italic;
+}
+div.tolomeo_home {
+    height: 230px;
+}
+div.tolomeo_home  img{
+    border-radius:10px;
+}
+div.tolomeo_home div{
+    margin: 10px;
+    text-align: center;
+    margin-top: 0px;
+    border: 1px solid #CCC;
+
+    border-radius: 20px;
+    padding: 10px;
+}
+div.tolomeo_home a,div.tolomeo_home a:hover{
+    text-decoration:none;
+    color:gray;
+}
+
+.home_links img{
+    border-radius: 10px;
+    margin-bottom:10px;
+}
+ 
+body.index.home .front-page div.home_groups  div.action-box-inner{
+    min-height:10em
+}
+body.index.home .front-page .action-box-inner,body.index.home .front-page .action-box {
+    background-color: #F3F3F3;
 }
