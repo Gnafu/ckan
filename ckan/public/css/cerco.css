@@ -98,8 +98,11 @@ div .home_groups .span3.action-box-inner{
     margin:3px;
 
 }
-body.index.home .front-page div.home_groups  div.action-box-inner{
-    min-height:10em
+body.index.home .front-page div.home_groups_container  div.action-box-inner{
+    min-height:10em;
+    margin:3px;
+
+    
 }
 body.index.home .front-page .action-box-inner,body.index.home .front-page .action-box {
     background-color: #F3F3F3;
