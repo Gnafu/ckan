@@ -45,7 +45,7 @@
     </div>
     <div class="row">
         <div class="span8 action-box home_groups">
-        <div class="action-box-inner"><a href="${h.url_for('/group')}" class=" pull-right">Vedi tutti i gruppi</a><h2>Groups</h2> 
+        <div class="home_groups_container action-box-inner"><a href="${h.url_for('/group')}" class=" pull-right">Vedi tutti i gruppi</a><h2>Groups</h2> 
       <py:for each="i, group_dict in enumerate(c.groups[:6])">
         <div class="span3 action-box-inner"> 
           <div class="group">
@@ -61,7 +61,7 @@
       </div>
       <div class="span4 home_links">
         <a href="${h.url_for('/about')}" title="opendata" ><img src="/img/chi_siamo.jpg" /></a> 
-        <a href="http://opengovernmentdata.org/" title="opendata" ><img src="/img/progetto_cerco.jpg" /></a>
+        <a href="http://www.gonews.it/articolo_60926_Nasce-Cerco-Centro-Elaborazioni-Ricerche-Comunicazioni-Online.html" title="opendata" ><img src="/img/progetto_cerco.jpg" /></a>
         <a href="http://opengovernmentdata.org/" title="opendata" ><img src="/img/opendata.jpg" /></a>
 
 

@@ -91,7 +91,13 @@ div.tolomeo_home a,div.tolomeo_home a:hover{
     border-radius: 10px;
     margin-bottom:10px;
 }
- 
+div.home_groups,body.index.home .front-page div.home_groups div.action-box-inner.home_groups_container{
+    min-height:370px;
+}
+div .home_groups .span3.action-box-inner{
+    margin:3px;
+
+}
 body.index.home .front-page div.home_groups  div.action-box-inner{
     min-height:10em
 }
