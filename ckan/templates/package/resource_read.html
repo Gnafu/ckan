@@ -117,10 +117,10 @@
     <div class="quick-info">
       <dl>
         <dt>Last updated</dt>
-        <dd>${h.time_ago_in_words_from_str(c.resource['last_modified'], granularity='day')}</dd>
+        <dd>${h.time_ago_in_words_from_str(c.resource['last_modified'], granularity='day')}</dd><br />
         <dt>Format</dt>
         <dd>
-          ${c.resource['format'] or 'Unknown'}
+          ${c.resource['format'] or 'Sconosciuto'}
         </dd>
         <dt>Licence</dt>
         <dd>
