@@ -549,9 +549,9 @@ def render_datetime(datetime_, date_format=None, with_hours=False):
     If timestamp is badly formatted, then a blank string is returned.
     '''
     if not date_format:
-        date_format = '%b %d, %Y'
+        date_format = '%d/%m/%y'
         if with_hours:
-            date_format += ', %H:%M'
+            date_format += '%D'
     if isinstance(datetime_, datetime.datetime):
         return datetime_.strftime(date_format)
     elif isinstance(datetime_, basestring):
