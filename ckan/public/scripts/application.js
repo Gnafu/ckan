@@ -1777,8 +1777,9 @@ CKAN.DataPreview = function ($, my) {
       my.$dialog.append(el);
     }
     // WMS reference
-    else if (resourceData.resource_locator_protocol == 'TOLOMEO:preset') {
-      // Davide
+    else if (
+        resourceData.resource_locator_protocol == 'OGC:WMS-1.3.0-http-get-map' ||
+        resourceData.resource_locator_protocol == 'OGC:WMS-1.1.1-http-get-map') {
       my.$dialog.empty();
       var el = $('<div style="width:100%;height:550px"></div>');
       el.attr('id', 'tolomeo-preview');
