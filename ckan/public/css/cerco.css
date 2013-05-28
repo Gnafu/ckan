@@ -94,6 +94,17 @@ div.tolomeo_home a,div.tolomeo_home a:hover{
 div.home_groups,body.index.home .front-page div.home_groups div.action-box-inner.home_groups_container{
     min-height:370px;
 }
+body.index.home .front-page div.home_groups .span3.action-box-inner {
+    margin:3px;
+    background-color: #EAEAEA;
+    border-top-left-radius: 0px;
+    border-top-right-radius:20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius:0px;
+    
+
+
+}
 div .home_groups .span3.action-box-inner{
     margin:3px;
 
@@ -101,6 +112,7 @@ div .home_groups .span3.action-box-inner{
 body.index.home .front-page div.home_groups_container  div.action-box-inner{
     min-height:10em;
     margin:3px;
+
 
     
 }
