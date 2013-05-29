@@ -18,13 +18,13 @@
 <py:if test="c.resource.get('resource_locator_protocol')=='OGC:WMS-1.3.0-http-get-map' or c.resource.get('resource_locator_protocol')=='OGC:WMS-1.1.1-http-get-map'  ">
  <!-- Davide -->
   <!-- Tolomeo -->
-<script type="text/JavaScript" charset="utf-8" src="/tolomeo/js/tolomeoExt/build/toloExt-all-debug.js"></script>
-<script type="text/JavaScript" charset="utf-8" src="/tolomeo/ToloExtParamsJSServlet?paramPreset=CercoFI&#38;url1=${c.resource.get('url')}&#38;lay1=${c.resource.get('name')}" ></script>
+<script type="text/JavaScript" charset="utf-8" src="${config.get('tolomeo.base','')}/js/tolomeoExt/build/toloExt-all-debug.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="${config.get('tolomeo.base','')}/ToloExtParamsJSServlet?paramPreset=${config.get('tolomeo.wmspreset','')}&#38;url1=${c.resource.get('url')}&#38;lay1=${c.resource.get('name')}" ></script>
 
-<script type="text/JavaScript" charset="utf-8" src="/tolomeo/js/tolomeoExt/layout/ToloPanelInter.js"></script><!-- TODO dynamically include this -->
+<script type="text/JavaScript" charset="utf-8" src="${config.get('tolomeo.base','')}/js/tolomeoExt/layout/ToloPanelInter.js"></script><!-- TODO dynamically include this -->
  	 <!-- Davide -->
-  <link rel="stylesheet" type="text/css" charset="utf-8" href="/tolomeo/js/ext/extJS/resources/css/ext-all.css" />
-  <link rel="stylesheet" type="text/css" charset="utf-8" href="/tolomeo/css/toloExt-intra.css" />
+  <link rel="stylesheet" type="text/css" charset="utf-8" href="${config.get('tolomeo.base','')}/js/ext/extJS/resources/css/ext-all.css" />
+  <link rel="stylesheet" type="text/css" charset="utf-8" href="${config.get('tolomeo.base','')}/css/toloExt-intra.css" />
 <style>
 .olMap img { max-width:none; }
 </style>
@@ -77,26 +77,56 @@
     ${h.resource_display_name(c.resource)}
   </py:def>
 
-  <div py:match="content">
-    <div class="resource-actions">
-      <a py:if="c.resource.get('url')" class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+  <div py:match="content">type= ${c.resource.get('resource_type')}
+    <div class="resource-actions"> 
+      <span py:if="c.resource.get('url')" >
         <py:choose test="c.resource.get('resource_type')">
-          <py:when test="'listing'">View</py:when>
-          <py:when test="'service'">View</py:when>
-          <py:when test="'WWW:LINK-1.0-http--link'">View</py:when>
-          <py:when test="'link'">View</py:when>
-          <py:when test="'TOLOMEO:preset'">Mappa</py:when>
-
-
-          <py:when test="'api'">API Endpoint</py:when>
+          <py:when test="'listing'">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+                View
+            </a>
+          </py:when>
+          <py:when test="'service'">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+                View
+            </a>
+          </py:when>
+          <py:when test="'WWW:LINK-1.0-http--link'">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+                View
+            </a>
+          </py:when>
+          <py:when test="'link'">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+                View
+            </a>
+          </py:when>
+          <py:when test="'WMS'">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${config.get('tolomeo.base','')}/TolomeoMainServlet?paramPreset=${config.get('tolomeo.wmspreset','')}&#38;url1=${c.resource.get('url')}&#38;lay1=${c.resource.get('name')}">
+                Mappa
+            </a>
+          </py:when>
+          <py:when test="'TOLOMEO:preset'">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+                Mappa
+            </a>
+          </py:when>
+          <py:when test="'api'">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+                API Endpoint
+            </a>
+          </py:when>
           <py:otherwise>
-            <div class="download">
-              <img src="${h.icon_url('arrow-down-16')}"/>
-              Download
-            </div>
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+
+                <div class="download">
+                  <img src="${h.icon_url('arrow-down-16')}"/>
+                  Download
+                </div>
+            </a>
           </py:otherwise>
         </py:choose>
-      </a>
+      </span>
       <py:if test="'datastore' in config.get('ckan.plugins')">
         <py:if test="c.resource.get('datastore_active')">
           <a class="btn btn-success" data-toggle="modal" href=".modal-data-api-help">Data API</a>
