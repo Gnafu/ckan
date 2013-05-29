@@ -1786,6 +1786,7 @@ CKAN.DataPreview = function ($, my) {
       my.$dialog.append(el);
         Ext.onReady(function(){
             var tolomeo = new TolomeoExt.ToloPanelInter({
+            layout:'fit',
             withDataPanel: false,
             withToolsPanel: false,
             toolbarOpt: {                 
@@ -1804,16 +1805,18 @@ CKAN.DataPreview = function ($, my) {
                withDragDrop: false,
                withDelete: false,
                withShowCoordinate: false,
-               defaults: {scale:'medium'},                  
-               iconBasePath: '/tolomeo/img/icone/24-default/'
+               defaults: {scale:'medium'},
+               withPanArrows:false,
+               //iconBasePath: '/tolomeo/img/icone/24-default/'
+
             }
-        });
+        }); 
 
         var tolopan = new Ext.Panel({
             renderTo: 'tolomeo-preview',
             layout: 'fit',
-            height: 400,
-            items:[tolomeo]
+            height: 550,
+            items:[tolomeo] 
         }); 
     });
       /*
