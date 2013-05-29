@@ -77,7 +77,7 @@
     ${h.resource_display_name(c.resource)}
   </py:def>
 
-  <div py:match="content">type= ${c.resource.get('resource_type')}
+  <div py:match="content">
     <div class="resource-actions"> 
       <span py:if="c.resource.get('url')" >
         <py:choose test="c.resource.get('resource_type')">
