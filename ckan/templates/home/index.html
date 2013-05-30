@@ -29,7 +29,7 @@
       </div>
 
       <div class="span4 tolomeo_home">
-        <a href="${config.get('tolomeo.base','')}/TolomeoMainServlet" title="opendata" class="tolomeo_home"  target="_blank"> 
+        <a href="${config.get('tolomeo.base','/tolomeo')}/TolomeoMainServlet" title="opendata" class="tolomeo_home"  target="_blank"> 
         <div>
             <h2>Vai alla Mappa</h2><img  src="/img/tolmond.jpg" />
         </div>
@@ -37,14 +37,19 @@
       </div>
     </div>
 
-    
+    <div py:def="home_links()" class="span4 home_links">
+        <a href="${h.url_for('/about')}" title="opendata" ><img src="/img/chi_siamo.jpg" /></a> 
+        <a href="http://www.gonews.it/articolo_60926_Nasce-Cerco-Centro-Elaborazioni-Ricerche-Comunicazioni-Online.html" title="opendata" ><img src="/img/progetto_cerco.jpg" /></a>
+        <a href="http://opengovernmentdata.org/" title="opendata" ><img src="/img/opendata.jpg" /></a>
+
+      </div>
 
     
-    <div py:if="c.groups" class="row whoelse">
+    <div  class="row whoelse">
      
     </div>
-    <div class="row">
-        <div class="span8 action-box home_groups">
+    <div py:if="c.groups" class="row">
+        <div  class="span8 action-box home_groups">
         <div class="home_groups_container action-box-inner"><a href="${h.url_for('/group')}" class=" pull-right">Vedi tutti i gruppi</a><h2>Groups</h2> 
       <py:for each="i, group_dict in enumerate(c.groups[:6])">
         <div class="span3 action-box-inner"> 
@@ -58,19 +63,14 @@
         </div>
       </py:for>
       </div>
+     
       </div>
-      <div class="span4 home_links">
-        <a href="${h.url_for('/about')}" title="opendata" ><img src="/img/chi_siamo.jpg" /></a> 
-        <a href="http://www.gonews.it/articolo_60926_Nasce-Cerco-Centro-Elaborazioni-Ricerche-Comunicazioni-Online.html" title="opendata" ><img src="/img/progetto_cerco.jpg" /></a>
-        <a href="http://opengovernmentdata.org/" title="opendata" ><img src="/img/opendata.jpg" /></a>
-
-
-      </div>
+       ${home_links()}
     </div>
     <div class="row"></div>
 
     <div class="row whoelse">
-        <div class="span12">
+        <div class="${c.groups and 'span12' or 'span8'}">
            <div class="action-box">
                <div class="action-box-inner">
                    <h2>Recent Updates</h2>
@@ -82,20 +82,11 @@
                    </py:for>
                </div>
             </div>
+             
         </div>
-<!-- TODO -->
-<!--
-        <div class="span6">
-           <div class="action-box">
-               <div class="action-box-inner">
-                   <h2>Dataset più consultati</h2> 
-                   <py:for each="pkg in c.recently_changed_packages">
-                       <h3 style="margin-bottom:0px" ><a href="${h.url_for(controller='package', action='read', id=pkg['name'])}">${pkg['title']}</a></h3>
-                   </py:for>
-               </div>
-            </div>
-        </div>
--->
+        <py:if test="not c.groups">
+          ${home_links()}
+        </py:if>
     </div>
   </div>
   
