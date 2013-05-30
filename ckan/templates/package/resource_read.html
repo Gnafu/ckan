@@ -18,13 +18,13 @@
 <py:if test="c.resource.get('resource_locator_protocol')=='OGC:WMS-1.3.0-http-get-map' or c.resource.get('resource_locator_protocol')=='OGC:WMS-1.1.1-http-get-map'  ">
  <!-- Davide -->
   <!-- Tolomeo -->
-<script type="text/JavaScript" charset="utf-8" src="${config.get('tolomeo.base','')}/js/tolomeoExt/build/toloExt-all-debug.js"></script>
-<script type="text/JavaScript" charset="utf-8" src="${config.get('tolomeo.base','')}/ToloExtParamsJSServlet?paramPreset=${config.get('tolomeo.wmspreset','')}&#38;url1=${c.resource.get('url')}&#38;lay1=${c.resource.get('name')}" ></script>
+<script type="text/JavaScript" charset="utf-8" src="${config.get('tolomeo.base','/tolomeo')}/js/tolomeoExt/build/toloExt-all-debug.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="${config.get('tolomeo.base','/tolomeo')}/ToloExtParamsJSServlet?paramPreset=${config.get('tolomeo.wmspreset','')}&#38;url1=${c.resource.get('url')}&#38;lay1=${c.resource.get('name')}" ></script>
 
-<script type="text/JavaScript" charset="utf-8" src="${config.get('tolomeo.base','')}/js/tolomeoExt/layout/ToloPanelInter.js"></script><!-- TODO dynamically include this -->
+<script type="text/JavaScript" charset="utf-8" src="${config.get('tolomeo.base','/tolomeo')}/js/tolomeoExt/layout/ToloPanelInter.js"></script><!-- TODO dynamically include this -->
  	 <!-- Davide -->
-  <link rel="stylesheet" type="text/css" charset="utf-8" href="${config.get('tolomeo.base','')}/js/ext/extJS/resources/css/ext-all.css" />
-  <link rel="stylesheet" type="text/css" charset="utf-8" href="${config.get('tolomeo.base','')}/css/toloExt-intra.css" />
+  <link rel="stylesheet" type="text/css" charset="utf-8" href="${config.get('tolomeo.base','/tolomeo')}/js/ext/extJS/resources/css/ext-all.css" />
+  <link rel="stylesheet" type="text/css" charset="utf-8" href="${config.get('tolomeo.base','/tolomeo')}/css/toloExt-intra.css" />
 <style>
 .olMap img { max-width:none; }
 </style>
@@ -102,7 +102,7 @@
             </a>
           </py:when>
           <py:when test="'WMS'">
-            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${config.get('tolomeo.base','')}/TolomeoMainServlet?paramPreset=${config.get('tolomeo.wmspreset','')}&#38;url1=${c.resource.get('url')}&#38;lay1=${c.resource.get('name')}"  target="_blank">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${config.get('tolomeo.base','/tolomeo')}/TolomeoMainServlet?paramPreset=${config.get('tolomeo.wmspreset','')}&#38;url1=${c.resource.get('url')}&#38;lay1=${c.resource.get('name')}"  target="_blank">
                 Mappa
             </a>
           </py:when>
