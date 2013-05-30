@@ -82,42 +82,42 @@
       <span py:if="c.resource.get('url')" >
         <py:choose test="c.resource.get('resource_type')">
           <py:when test="'listing'">
-            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}" target="_blank">
                 View
             </a>
           </py:when>
           <py:when test="'service'">
-            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}" target="_blank">
                 View
             </a>
           </py:when>
           <py:when test="'WWW:LINK-1.0-http--link'">
-            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}" target="_blank">
                 View
             </a>
           </py:when>
           <py:when test="'link'">
-            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}" target="_blank">
                 View
             </a>
           </py:when>
           <py:when test="'WMS'">
-            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${config.get('tolomeo.base','')}/TolomeoMainServlet?paramPreset=${config.get('tolomeo.wmspreset','')}&#38;url1=${c.resource.get('url')}&#38;lay1=${c.resource.get('name')}">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${config.get('tolomeo.base','')}/TolomeoMainServlet?paramPreset=${config.get('tolomeo.wmspreset','')}&#38;url1=${c.resource.get('url')}&#38;lay1=${c.resource.get('name')}"  target="_blank">
                 Mappa
             </a>
           </py:when>
           <py:when test="'TOLOMEO:preset'">
-            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}" target="_blank">
                 Mappa
             </a>
           </py:when>
           <py:when test="'api'">
-            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}" target="_blank">
                 API Endpoint
             </a>
           </py:when>
           <py:otherwise>
-            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}">
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}" target="_blank">
 
                 <div class="download">
                   <img src="${h.icon_url('arrow-down-16')}"/>

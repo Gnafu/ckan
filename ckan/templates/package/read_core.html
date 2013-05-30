@@ -71,7 +71,7 @@
           <td class="dataset-label">Source</td>
             <py:choose test="c.pkg.url.find('geonetwork')">
                 <py:when test="-1"> <td class="dataset-details" property="foaf:homepage">${c.pkg_url_link}</td></py:when>
-                <py:otherwise><td class="dataset-details" property="foaf:homepage"><a href="${c.pkg.url}">Metadato ISO Originale</a></td></py:otherwise>
+                <py:otherwise><td class="dataset-details" property="foaf:homepage"><a href="${c.pkg.url}" target="_blank">Metadato ISO Originale</a></td></py:otherwise>
             </py:choose>
         </tr>
 
