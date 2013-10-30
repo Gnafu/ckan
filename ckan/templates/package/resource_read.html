@@ -24,6 +24,7 @@
 <script type="text/JavaScript" charset="utf-8" src="${config.get('tolomeo.base','/tolomeo')}/js/tolomeoExt/layout/ToloPanelInter.js"></script><!-- TODO dynamically include this -->
  	 <!-- Davide -->
   <link rel="stylesheet" type="text/css" charset="utf-8" href="${config.get('tolomeo.base','/tolomeo')}/js/ext/extJS/resources/css/ext-all.css" />
+  <link rel="stylesheet" type="text/css" charset="utf-8" href="${config.get('tolomeo.base','/tolomeo')}/js/ext/extJS/resources/css/xtheme-gray-red.css" />
   <link rel="stylesheet" type="text/css" charset="utf-8" href="${config.get('tolomeo.base','/tolomeo')}/css/toloExt-intra.css" />
 <style>
 .olMap img { max-width:none; }
@@ -78,6 +79,119 @@
   </py:def>
 
   <div py:match="content">
+
+  <py:if test="'datastore' in config.get('ckan.plugins')">
+    ${data_api_help(c.datastore_api, c.resource['id'])}
+  </py:if>
+  ${data_viewer_embed_dialog()}
+
+    <div class="quick-info">
+ <dl>
+      <!--  <dt>Last updated</dt>
+        <dd>${h.time_ago_in_words_from_str(c.resource['last_modified'], granularity='day')}</dd><br /> 
+        <dt>Format</dt>
+        <dd>
+          ${c.resource['format'] or 'Sconosciuto'}
+        </dd> -->
+        <dt>Licence</dt>
+	<dd>
+          <py:choose test="">
+            <span py:when="c.pkg.license and c.pkg.license.url"><a
+                href="${c.pkg.license.url}" rel="dc:rights">
+<!--AGGIUNTA CERCO -->
+<py:choose test="c.pkg.license_id">
+  <py:when test="'cc-by'"><img class="open-data" src="/img/cc_by.png" /></py:when>
+  <py:when test="'cc-by-nd'"><img class="open-data" src="/img/cc_by_nd.png" /></py:when>
+  <py:when test="'cc-nc'"><img class="open-data" src="/img/cc_by_nc.png" /></py:when>
+  <py:when test="'cc-by-sa'"><img class="open-data" src="/img/cc_by_sa.png" /></py:when>
+  <py:when test="'cc-by-nc-sa'"><img class="open-data" src="/img/cc_by_nc_sa.png" /></py:when>
+  <py:when test="'cc-by-nc-nd'"><img class="open-data" src="/img/cc_by_nc_nd.png" /></py:when>
+  <py:otherwise>Altra licenza</py:otherwise>
+</py:choose>
+<!--
+<py:choose test="c.pkg.license_id">
+  <py:when test="'cc-by'"><img src="/img/cc_by.png" /></py:when>
+  <py:when test="'cc-by-sa'"><img src="/img/cc_by_sa.png" /></py:when>
+  <py:otherwise>altra licenza</py:otherwise>
+</py:choose> 
+-->
+<!-- FINE AGGIUNTA CERCO -->
+</a></span>
+            <span py:when="c.pkg.license" property="dc:rights">${c.pkg.license.title}</span>
+<!--	    <span py:when="c.pkg.license_id" property="dc:rights">${c.pkg.license_id}</span>  -->
+	    <span py:when="not(c.pkg.license)">License unknown</span>
+          </py:choose>
+	<py:if test="c.pkg.isopen()">
+              <a href="http://opendefinition.org/okd/" title="This dataset satisfies the Open Definition.">
+                <img class="open-data" src="http://assets.okfn.org/images/ok_buttons/od_80x15_blue.png" alt="[Open Data]" />
+              </a>
+          </py:if>
+          <py:if test="not c.pkg.isopen()">
+              <span class="closed">
+                ${h.icon('lock')}
+              </span>
+          </py:if>
+        </dd>
+	 <dt>Format</dt>
+        <dd>
+          ${c.resource['format'] or 'Sconosciuto'}
+        </dd>
+
+      </dl>
+    </div>
+<br />
+
+    <div class="notes" property="rdfs:label" py:if="c.resource.get('description')">
+      <div id="notes-extract">
+	<h3>Descrizione della risorsa:  </h3>
+        ${ h.render_markdown(c.resource.get('description')) }
+      </div>
+    </div>
+
+    <div py:if="not c.resource.get('description') and c.package.get('notes')">
+      <div>
+        <strong i18n:msg="">
+          From the <a href="${h.url_for(controller='package', action='read', id=c.package['name'])}">Dataset</a>:
+        </strong>
+      </div>
+      <div class="notes">
+        <div id="notes-extract">${h.render_markdown(c.package.get('notes')) }</div>
+      </div>
+    </div>
+
+
+
+    <div class="resource-information">
+      <h3>Additional Information  </h3>
+      <table class="table table-bordered table-striped table-condensed">
+     <!--  <thead>
+          <tr>
+            <th scope="col">Field</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead> -->
+        <tbody>
+          <py:for each="i, key in enumerate(sorted(c.resource.keys()))">
+            <tr py:if="key in ['name','url']">  <!-- tolto ,'created'--> 
+              <td class="dataset-label" property="rdfs:label">${_(key)}</td>
+                <td class="dataset-details" property="rdf:value">
+                    <py:choose test="key">
+                        <py:when test="'url'"><a href="${c.resource[key]}">${c.resource[key]}</a></py:when>
+                        <py:otherwise>${c.resource[key]}</py:otherwise>
+                    </py:choose>
+             </td>
+            </tr>
+          </py:for>
+          <tr> <!-- MODIFICA CERCO -->
+		<td  class="dataset-label" property="rdfs:label">Referente</td>
+		<td>${c.package.get('author')}</td>
+          </tr>		 
+              <!-- FINE MODIFICA -->
+        </tbody>
+      </table>
+    </div>
+
+
     <div class="resource-actions"> 
       <span py:if="c.resource.get('url')" >
         <py:choose test="c.resource.get('resource_type')">
@@ -102,13 +216,13 @@
             </a>
           </py:when>
           <py:when test="'WMS'">
-            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${config.get('tolomeo.base','/tolomeo')}/TolomeoMainServlet?paramPreset=${config.get('tolomeo.wmspreset','')}&#38;url1=${c.resource.get('url')}&#38;lay1=${c.resource.get('name')}"  target="_blank">
-                Mappa
+            <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${config.get('tolomeo.base','/tolomeo')}/html/servizi/cerco/cerco.html?paramPreset=${config.get('tolomeo.wmspreset','')}&#38;url1=${c.resource.get('url')}&#38;lay1=${c.resource.get('name')}"  target="_blank">
+                personalizza la mappa
             </a>
           </py:when>
           <py:when test="'TOLOMEO:preset'">
             <a class="btn btn-primary resource-url-analytics resource-type-${c.resource.get('resource_type')}{c.resource.get('resource_type')}" href="${c.resource.get('url')}" target="_blank">
-                Mappa
+                personalizza la mappa
             </a>
           </py:when>
           <py:when test="'api'">
@@ -126,7 +240,7 @@
             </a>
           </py:otherwise>
         </py:choose>
-      </span>
+  </span>
       <py:if test="'datastore' in config.get('ckan.plugins')">
         <py:if test="c.resource.get('datastore_active')">
           <a class="btn btn-success" data-toggle="modal" href=".modal-data-api-help">Data API</a>
@@ -137,61 +251,8 @@
        
        
       </py:if>
-    </div>
-
-  <py:if test="'datastore' in config.get('ckan.plugins')">
-    ${data_api_help(c.datastore_api, c.resource['id'])}
-  </py:if>
-  ${data_viewer_embed_dialog()}
-
-    <div class="quick-info">
-      <dl>
-        <dt>Last updated</dt>
-        <dd>${h.time_ago_in_words_from_str(c.resource['last_modified'], granularity='day')}</dd><br />
-        <dt>Format</dt>
-        <dd>
-          ${c.resource['format'] or 'Sconosciuto'}
-        </dd>
-        <dt>Licence</dt>
-        <dd>
-          <py:choose test="">
-            <span py:when="c.pkg.license and c.pkg.license.url"><a
-                href="${c.pkg.license.url}" rel="dc:rights">${c.pkg.license.title.split('::')[-1]}</a></span>
-            <span py:when="c.pkg.license" property="dc:rights">${c.pkg.license.title}</span>
-            <span py:when="c.pkg.license_id" property="dc:rights">${c.pkg.license_id}</span>
-            <span py:when="not(c.pkg.license)">License unknown</span>
-          </py:choose>
-          <py:if test="c.pkg.isopen()">
-              <a href="http://opendefinition.org/okd/" title="This dataset satisfies the Open Definition.">
-                <img class="open-data" src="http://assets.okfn.org/images/ok_buttons/od_80x15_blue.png" alt="[Open Data]" />
-              </a>
-          </py:if>
-          <py:if test="not c.pkg.isopen()">
-              <span class="closed">
-                ${h.icon('lock')}
-              </span>
-          </py:if>
-        </dd>
-      </dl>
-    </div>
-
-
-    <div class="notes" property="rdfs:label" py:if="c.resource.get('description')">
-      <div id="notes-extract">
-        ${ h.render_markdown(c.resource.get('description')) }
-      </div>
-    </div>
-
-    <div py:if="not c.resource.get('description') and c.package.get('notes')">
-      <div>
-        <strong i18n:msg="">
-          From the <a href="${h.url_for(controller='package', action='read', id=c.package['name'])}">Dataset</a>:
-        </strong>
-      </div>
-      <div class="notes">
-        <div id="notes-extract">${h.render_markdown(c.package.get('notes')) }</div>
-      </div>
-    </div>
+  
+  </div>
 
     <div class="resource-preview">
       <div class="preview-header">
@@ -203,31 +264,6 @@
     </div>
 
     <br/>
-    <div class="resource-information">
-      <h3>Additional Information</h3>
-      <table class="table table-bordered table-striped table-condensed">
-        <thead>
-          <tr>
-            <th scope="col">Field</th>
-            <th scope="col">Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <py:for each="i, key in enumerate(sorted(c.resource.keys()))">
-            <tr py:if="key in ['name','created','url']">
-              <td class="dataset-label" property="rdfs:label">${_(key)}</td>
-                <td class="dataset-details" property="rdf:value">
-                    <py:choose test="key">
-                        <py:when test="'url'"><a href="${c.resource[key]}">${c.resource[key]}</a></py:when>
-                        <py:otherwise>${c.resource[key]}</py:otherwise>
-                    </py:choose>
-             </td>
-            </tr>
-           
-          </py:for>
-        </tbody>
-      </table>
-    </div>
 
     <span class="insert-comment-thread"></span>
   </div>

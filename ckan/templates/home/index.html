@@ -12,9 +12,9 @@
     <div>
       <!-- <h1 class="page_heading">Welcome to ${g.site_title}!</h1> -->
     </div>
-    <div class="row">
+ <div class="row">
     <div class="span8">
-        <div class="action-box">
+        <div class="action-box ">
           <div class="action-box-inner find clearfix">
             <h1>Find data</h1>
             <form action="${h.url_for(controller='package', action='search')}" method="GET"> 
@@ -28,29 +28,30 @@
       
       </div>
 
-      <div class="span4 tolomeo_home">
-        <a href="${config.get('tolomeo.base','/tolomeo')}/TolomeoMainServlet" title="opendata" class="tolomeo_home"  target="_blank"> 
+     <div class="span4 tolomeo_home">
+        <a href="${config.get('tolomeo.base','/tolomeo')}/html/servizi/cerco/cerco.html?paramPreset=${config.get('tolomeo.wmspreset','')}" title="opendata" class="tolomeo_home"  target="_blank"> 
         <div>
-            <h2>Vai alla Mappa</h2><img  src="/img/tolmond.jpg" />
+            <h2>Vai alla Mappa</h2><img  src="/img/mappa_tolomeo.png" />
         </div>
         </a>
       </div>
     </div>
 
+  
+  <!-- XX </div> -->
+
     <div py:def="home_links()" class="span4 home_links">
         <a href="${h.url_for('/about')}" title="opendata" ><img src="/img/chi_siamo.jpg" /></a> 
-        <a href="http://www.gonews.it/articolo_60926_Nasce-Cerco-Centro-Elaborazioni-Ricerche-Comunicazioni-Online.html" title="opendata" ><img src="/img/progetto_cerco.jpg" /></a>
-        <a href="http://opengovernmentdata.org/" title="opendata" ><img src="/img/opendata.jpg" /></a>
+        <a href="${h.url_for('/progetto')}"  title="progetto cerco" ><img src="/img/progetto_cerco.jpg" /></a>
+        <a href="http://opengovernmentdata.org/" title="opendata" ><img src="/img/opendata.jpg" /></a> 
+   </div>
 
-      </div>
 
-    
-    <div  class="row whoelse">
-     
-    </div>
+    <div  class="row whoelse">   </div>
+
     <div py:if="c.groups" class="row">
         <div  class="span8 action-box home_groups">
-        <div class="home_groups_container action-box-inner"><a href="${h.url_for('/group')}" class=" pull-right">Vedi tutti i gruppi</a><h2>Groups</h2> 
+        <div class="home_groups_container action-box-inner"><a href="${h.url_for('/group')}" class=" pull-right">Tutte le categorie</a><h2>Groups</h2> 
       <py:for each="i, group_dict in enumerate(c.groups[:6])">
         <div class="span3 action-box-inner"> 
           <div class="group">
@@ -67,29 +68,37 @@
       </div>
        ${home_links()}
     </div>
-    <div class="row"></div>
 
-    <div class="row whoelse">
-        <div class="${c.groups and 'span12' or 'span8'}">
-           <div class="action-box">
+<div class="row"></div>
+    <div class="row  whoelse">
+<!--<div class="${c.groups and 'span12' or 'span8'}"> -->
+<div class="span12">     
+      <div class="action-box">
                <div class="action-box-inner">
                    <h2>Recent Updates</h2>
                    <py:for each="pkg in c.recently_changed_packages">
                        <h3 style="margin-bottom:0px" ><a href="${h.url_for(controller='package', action='read', id=pkg['name'])}">${pkg['title']}</a></h3>
                        <p style="margin-bottom:0px"><small><span>Last Modified</span>: ${h.render_datetime(pkg.revision_timestamp)}</small></p>
                        <p>${h.markdown_extract(pkg.notes)}</p>
-                
+
                    </py:for>
                </div>
             </div>
-             
-        </div>
+</div>
+<!-- </div> -->
+
+<!--<div class="span4">
+<a class="twitter-timeline" href="https://twitter.com/SmartPrato" data-widget-id="346937635832483840">Tweets di @SmartPrato</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+    -->         
         <py:if test="not c.groups">
           ${home_links()}
         </py:if>
     </div>
   </div>
-  
+ 
+
   <xi:include href="layout.html" />
 </html>
 

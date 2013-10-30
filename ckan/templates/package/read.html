@@ -23,10 +23,21 @@
     <li py:if="c.pkg.license_id" id="dataset-license" class="sidebar-section">
       <strong>License:</strong>
         <py:choose test="">
-          <span py:when="c.pkg_dict.get('license_url')"><a
-              href="${c.pkg_dict.get('license_url')}" rel="dc:rights">${c.pkg_dict.get('license_title')}</a></span>
-          <span py:when="c.pkg.license" property="dc:rights">${c.pkg_dict.get('license_title')}</span>
+<span py:when="c.pkg_dict.get('license_url')">
+<a href="${c.pkg_dict.get('license_url')}" rel="dc:rights">${c.pkg_dict.get('license_title')}</a></span>
+	  <span py:when="c.pkg.license" property="dc:rights">${c.pkg_dict.get('license_title')}</span>
         </py:choose>
+
+<!--AGGIUNTA CERCO -->
+<py:choose test="c.pkg.license_id">
+  <py:when test="'cc-by'"><img src="/img/cc_by.png" /></py:when>
+  <py:when test="'cc-by-nd'"><img src="/img/cc_by_nd.png" /></py:when>
+  <py:when test="'cc-nc'"><img src="/img/cc_by_nc.png" /></py:when>
+  <py:when test="'cc-by-sa'"><img src="/img/cc_by_sa.png" /></py:when>
+  <py:when test="'cc-by-nc-sa'"><img src="/img/cc_by_nc_sa.png" /></py:when>
+  <py:when test="'cc-by-nc-nd'"><img src="/img/cc_by_nc_nd.png" /></py:when>
+  <py:otherwise>Altra licenza</py:otherwise>
+</py:choose>
 
         <py:if test="c.pkg_dict.get('isopen')">
             <a href="http://opendefinition.org/okd/" title="This dataset satisfies the Open Definition.">

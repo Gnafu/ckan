@@ -1,0 +1,16 @@
+<html xmlns:py="http://genshi.edgewall.org/"
+  xmlns:i18n="http://genshi.edgewall.org/i18n"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  py:strip="">
+    <py:def function="body_class">${h.literal('no-sidebar')}</py:def>
+
+  <py:def function="page_title">About</py:def>
+
+  <div py:match="content">
+    <h2>Progetto C.E.R.C.O.- ${g.site_title}</h2>
+   <p>Il Progetto <strong>C.E.R.C.O. </strong>(Centro Elaborazioni, Ricerche, Comunicazioni On-line), condiviso come progetto a livello di Area Metropolitana e posto a base di un Protocollo d'Intesa, siglato il 28 luglio 2010 tra le Province di Firenze, Prato e Pistoia, il Circondario Empolese Valdelsa, l'Autoritài Bacino del fiume Arno, la Comunitàontana della Valdibisenzio e tutti i Comuni della Provincia di Prato, riguarda l'informazione geografica su Internet ma con potenziali notevoli ricadute sul governo del territorio e, in particolare, su temi urbanistici di attualitàrapporto pubblico-privato e pubblico-pubblico, rapporto tra pianificazione e progetto, area vasta (in particolare area metropolitana, parco della piana, ecc.), monitoraggio ambientale, valutazione integrata, sviluppo socio-economico, ecc. Si tratta di un progetto di Infrastruttura dati Territoriali: un Geoportale su WEB strutturato per la ricerca, visualizzazione e consultazione dinamica di tavole cartografiche e non solo (banche dati alfanumeriche, indicatori, documenti di qualsiasi natura, news, ecc.) dove rintracciare dati e servizi di natura territoriale "pescando " i dati dai server di tutti quegli Enti e Privati che condividono l'iniziativa. Quindi non solo trasparenza amministrativa ed informazione ambientale ed urbanistica ma "servizi" per enti e cittadini: attuazione delle funzioni proprie degli Enti attraverso il WEB. </p>
+
+	</div>
+
+  <xi:include href="layout.html" />
+</html>

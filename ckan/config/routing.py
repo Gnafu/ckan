@@ -49,6 +49,7 @@ def make_map():
 
     map.connect('home', '/', controller='home', action='index')
     map.connect('about', '/about', controller='home', action='about')
+    map.connect('progetto', '/progetto', controller='home', action='progetto')
 
     # CKAN API versioned.
     register_list = [

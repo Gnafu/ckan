@@ -64,6 +64,9 @@ class LicenseRegister(object):
                 LicenseCreativeCommonsNonCommercial(),
                 LicenseOtherNonCommercial(),
                 LicenseOtherClosed(),
+		LicenseCreativeCommonsCCBYND(),
+	        LicenseCreativeCommonsCCBYNCND(),
+                LicenseCreativeCommonsCCBYNCSA(),
                 ]
             self._create_license_list(default_license_list)
 
@@ -224,7 +227,7 @@ class LicenseCreativeCommonsAttribution(DefaultLicense):
 
     @property
     def title(self):
-        return _("Creative Commons Attribution")
+        return _("Creative Commons Attribution - CC-BY")
 
 class LicenseCreativeCommonsAttributionShareAlike(DefaultLicense):
     domain_content = True
@@ -234,7 +237,7 @@ class LicenseCreativeCommonsAttributionShareAlike(DefaultLicense):
 
     @property
     def title(self):
-        return _("Creative Commons Attribution Share-Alike")
+        return _("Creative Commons Attribution Share-Alike - CC-BY-SA")
 
 class LicenseGNUFreeDocument(DefaultLicense):
     domain_content = True
@@ -291,8 +294,33 @@ class LicenseCreativeCommonsNonCommercial(DefaultLicense):
 
     @property
     def title(self):
-        return _("Creative Commons Non-Commercial (Any)")
+        return _("Creative Commons Non-Commercial (Any) - CC-NC ")
+#AGGIUNTE CERCO
+class LicenseCreativeCommonsCCBYND(DefaultLicense):
+    id = "cc-by-nd"
+    is_okd_compliant = True
+    url = "http://creativecommons.org/licenses/by-nd/3.0/"
 
+    @property
+    def title(self):
+        return _("Creative Commons Attribution - CC-ND ")
+
+class LicenseCreativeCommonsCCBYNCND(DefaultLicense):
+    id = "cc-by-nc-nd"
+    url = "http://creativecommons.org/licenses/by-nc-nd/3.0/"
+
+    @property
+    def title(self):
+        return _("Creative Commons Non-Commercial (Any) - CC-NC-ND ")
+
+class LicenseCreativeCommonsCCBYNCSA(DefaultLicense):
+    id = "cc-by-nd"
+    url = "http://creativecommons.org/licenses/by-nc-sa/3.0/"
+
+    @property
+    def title(self):
+        return _("Creative Commons Non-Commercial (Any) - CC-NC-SA ")
+# FINE AGGIUNTE
 class LicenseOtherNonCommercial(DefaultLicense):
     id = "other-nc"
     is_generic = True

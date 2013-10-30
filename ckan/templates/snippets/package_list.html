@@ -34,14 +34,26 @@
             
           </ul>
         </py:if>
+
         <ul class="openness">
+<li>
+<py:choose test="package.get('license_id')">
+  <py:when test="'cc-by'"><img src="/img/cc_by.png" /></py:when>
+  <py:when test="'cc-by-nd'"><img src="/img/cc_by_nd.png" /></py:when>
+  <py:when test="'cc-nc'"><img src="/img/cc_by_nc.png" /></py:when>
+  <py:when test="'cc-by-sa'"><img src="/img/cc_by_sa.png" /></py:when>
+  <py:when test="'cc-by-nc-sa'"><img src="/img/cc_by_nc_sa.png" /></py:when>
+  <py:when test="'cc-by-nc-nd'"><img src="/img/cc_by_nc_nd.png" /></py:when>  
+  <py:otherwise>Altra licenza</py:otherwise>
+</py:choose>
           <py:if test="package.isopen">
-            <li>
+    <!--        <li> -->
               <a href="http://opendefinition.org/okd/" title="This dataset satisfies the Open Definition.">
                   <img src="http://assets.okfn.org/images/ok_buttons/od_80x15_blue.png" alt="[Open Data]" />
               </a>
-            </li>
+    <!--        </li> -->
           </py:if>
+</li>
           <py:if test="not package.isopen">
             <li>
               <span class="closed">
@@ -56,7 +68,7 @@
 
 	<div py:for="extra in package.extras">
 		<span py:choose="">
-  			<span class="nodoorigine" py:when="extra.key == 'nodo_origine_cerco'">Nodo CERCO: <strong>${extra.value}</strong></span>
+  			<span class="nodoorigine" py:when="extra.key == 'nodo_origine_cerco'">Nodo: <strong>${extra.value}</strong></span>
 		</span>
 	</div>
 	<py:if test="package.resources">

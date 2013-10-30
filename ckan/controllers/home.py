@@ -109,6 +109,9 @@ class HomeController(BaseController):
 
     def about(self):
         return render('home/about.html')
+  
+    def progetto(self):
+        return render('home/progetto.html')
 
     def cache(self, id):
         '''Manual way to clear the caches'''

@@ -3,7 +3,7 @@
   xmlns:i18n="http://genshi.edgewall.org/i18n"
   py:strip=""
   >
-  <xi:include href="../_util.html" />
+  <xi:include href="../_util.html" /> 
 
   <div id="dataset" class="dataset">
     <!-- Overview Section -->
@@ -23,7 +23,7 @@
 
       <!-- Resources -->
       <div id="dataset-resources" class="resources subsection">
-        <h3>Resources
+        <h3>Resources available 
         <py:if test="h.check_access('package_update',{'id':c.pkg.id})"> &nbsp;
           ${h.subnav_link(_('(edit)'), controller='package', action='editresources', id=c.pkg.name)}
         </py:if></h3>
@@ -33,7 +33,7 @@
             <a href="${h.url_for(controller='package', action='resource_read', id=c.pkg_dict['name'], resource_id=res['id'])}">
           <py:choose test="res.get('resource_locator_protocol')">
           <py:when test="'TOLOMEO:preset'">${h.icon('map')}Mappa:</py:when>
-          <py:when test="'OGC:WMS-1.3.0-http-get-map'">${h.icon('map')}Livello:</py:when>
+          <py:when test="'OGC:WMS-1.3.0-http-get-map'">${h.icon('map')}Visualizza su mappa (WMS):</py:when>
           <py:when test="'WWW:LINK-1.0-http--link'">${h.icon('page_white_link')}</py:when>
           <py:when test="'api'">API Endpoint</py:when>
           <py:otherwise>
@@ -54,18 +54,18 @@
     </div>
 
     <!-- Dataset Information Section -->
-    <h3>Additional Information
+    <h3>Additional Information 
       <py:if test="h.check_access('package_update',{'id':c.pkg.id})"> &nbsp;
         ${h.subnav_link(_('(settings)'), controller='package', action='edit', id=c.pkg.name)}
       </py:if></h3>
     <div id="dataset-information">
     <table class="table table-striped table-bordered table-condensed">
-      <thead>
+    <!--  <thead>  MODIFICA CERCO
         <tr>
           <th scope="col">Field</th>
           <th scope="col">Value</th>
-        </tr>
-      </thead>
+        </tr> 
+      </thead>  -->
       <tbody>
         <tr py:if="c.pkg.url">
           <td class="dataset-label">Source</td>
@@ -85,18 +85,35 @@
         
         <tr py:for="i, (key, value) in enumerate(c.pkg_extras)"
           rel="dc:relation" resource="_:extra${i}">
-          <py:if test="key in ['guid' ,'spatial-reference-system', 'metadata-date' ,'resource-type']">
+          <py:if test="key in ['guid' ,'spatial-reference-system', 'resource-type']">  <!--tolto  'metadata-date' -->
           <td class="dataset-label" property="rdfs:label">${_(key)}</td>
           <td class="dataset-details" property="rdf:value">${value}</td>
           </py:if>
 
-          <py:if test="key == 'licence'"> <!-- licence is an array -->
+          <py:if test="key == 'licence_spento'"> <!--  scrivere license per riattivarlo    -->
+		 <!-- licence is an array -->
           <td class="dataset-label" property="rdfs:label">${_(key)}</td>
 		<!-- TODO: trasform lic in an iterable list -->
           <td class="dataset-details" property="rdf:value"><py:for each="lic in list(value)">${lic} </py:for></td>
-          </py:if>        
-  
+          
+	</py:if>        
+ 
         </tr>
+	<!--  MODIFICA CERCO -->
+       <tr> 
+                <td  class="dataset-label" property="rdfs:label">Referente</td>
+                <td>${c.pkg.author}</td>
+       </tr>
+	 <tr> 
+                <td  class="dataset-label" property="rdfs:label">Contatto referente</td>
+                <td>${c.pkg.author_email}</td>
+       </tr>
+	<tr> 
+                <td  class="dataset-label" property="rdfs:label">Data aggiornamento</td>
+                <td>${c.pkg.version}</td>
+       </tr>
+
+      <!-- FINE MODIFICA --> 
       </tbody>
     </table>
 

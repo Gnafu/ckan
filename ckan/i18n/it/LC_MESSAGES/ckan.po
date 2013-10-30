@@ -743,6 +743,10 @@ msgstr "Informazioni di base"
 msgid "Resources"
 msgstr "Risorse"
 
+#: ckan/templates/package/read_core.html:26
+msgid "Resources available"
+msgstr "Risorse disponibili"
+
 #: ckan/forms/package.py:97 ckan/templates/layout_base.html:78
 #: ckan/templates/package/new_package_form.html:93
 #: ckan/templates/package/read.html:49 ckan/templates/package/search.html:26
@@ -3108,7 +3112,7 @@ msgstr "Campo"
 
 #: ckan/templates/package/read_core.html:63
 msgid "Source"
-msgstr "Origine"
+msgstr "Informazioni sul dato"
 
 #: ckan/templates/package/read_core.html:83
 msgid "Country"

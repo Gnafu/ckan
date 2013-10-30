@@ -94,7 +94,7 @@
     <div id="main" class="container" role="main">
       <h1 py:if="defined('page_heading')" class="page_heading">
         <img py:if="defined('page_logo')" id="page-logo" src="${page_logo()}" alt="Page Logo" />
-        ${page_heading()}
+       ${page_heading()}  
       </h1>
       <div class="row">
         <div class="span12">
@@ -116,8 +116,20 @@
           </div> <!-- /content -->
         </div>
         <div class="span3 sidebar-outer">
-          <div id="sidebar">
-            <ul class="widget-list">
+      
+ <div id="sidebar">
+         <!-- AGGIUNTO CERCO -->
+        <div class="tolomeo_home_laterale">
+                 <a href="${config.get('tolomeo.base','/tolomeo')}/html/servizi/cerco/cerco.html?paramPreset=${config.get('tolomeo.wmspreset','')}" title="opendata" class="tolomeo_home"  target="_blank">
+                                  <div>
+                                                               <h2>Vai alla mappa</h2><img  src="/img/mappa_tolomeo.png" />
+                                                                                                    </div>
+                                                                                                                                                 </a>
+
+        </div>
+                <!-- FINE AGGIUNTO CERCO -->
+    
+	<ul class="widget-list">
               <py:if test="defined('primary_sidebar_extras')">
                 ${primary_sidebar_extras()}
               </py:if>
@@ -135,25 +147,6 @@
   <div class="footer outer">
     <footer class="container">
       <div class="row">
-       <!--   <div class="span3">
-          <h3 class="widget-title">About ${g.site_title}</h3>
-          <div class="textwidget">
-          <ul>
-                <li>${h.link_to(_('About'), h.url_for(controller='home', action='about'))}</li>
-              <li>
-                <a href="http://twitter.com/ckanproject">Twitter @ckanproject</a>
-              </li>
-                <li>${h.link_to(_('API'), h.url_for(controller='api', action='get_api', ver=1))}</li>
-                <li>${h.link_to(_('API Docs'), 'http://docs.ckan.org/en/latest/api.html')}</li>
-              <li>
-                <a href="http://ckan.org/contact/">Contact Us</a>
-              </li>
-              <li>
-                <a href="http://okfn.org/privacy-policy/">Privacy Policy</a>
-              </li>
-            </ul> 
-          </div>
-        </div> -->
        
         <div class="span6">
 
