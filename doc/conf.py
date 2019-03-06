@@ -48,7 +48,7 @@ copyright = u'''&copy; 2009-2012, <a href="http://okfn.org/">Open Knowledge Foun
     href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
     Attribution ShareAlike (Unported) v3.0 License</a>.<br />
     <img src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" alt="CC License Logo" />
-    <a href="http://opendefinition.org/"><img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0" 
+    <a href="https://opendefinition.org/"><img src="https://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" border="0" 
       alt="{{ _('Open Content') }}" /></a>
   '''
 html_show_sphinx = False
@@ -113,7 +113,7 @@ sys.path.append(os.path.abspath('_themes'))
 html_theme_path = ['_themes']
 html_theme = 'sphinx-theme-okfn'
 html_theme_options = {
-        'logo_icon': 'http://assets.okfn.org/p/opendatahandbook/img/data-wrench-inverted.png',
+        'logo_icon': 'https://assets.okfn.org/p/opendatahandbook/img/data-wrench-inverted.png',
         'show_version': True
     }
 
